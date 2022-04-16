@@ -1,4 +1,4 @@
-# HuellHowserRoku
+# Huell Howser Roku
 
 In honor of Huell Howser, I wrote a free Roku Channel to stream his episodes called "Huell Howser's California".
 

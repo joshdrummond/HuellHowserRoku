@@ -1,0 +1,157 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<component name="HDetailsView" extends="SGDEXComponent" xsi:noNamespaceSchemaLocation="https://devtools.web.roku.com/schema/RokuSceneGraph.xsd">
+    <interface>
+        <!-- @Public -->
+        <!-- Content node for buttons node. Has childrens with id and title that will be shown on View.  -->
+        <field id="buttons" type="node" alias="buttons.content" />
+
+        <!-- @Public -->
+        <!-- @WriteOnly -->
+        <!-- Tells details view how your content is structured
+        if set to true it will take children of _content_ to display on View
+        if set to false it will take _content_ and display it on the View  -->
+        <field id="isContentList" type="bool" value="true" />
+
+        <!-- @Public -->
+        <!-- @WriteOnly -->
+        <!-- defines logic of showing content when pressing left on first item, or pressing right on last item.
+        if set to true it will start from start from first item (when pressing right) or last item (when pressing left) -->
+        <field id="allowWrapContent" type="bool" value="true" />
+
+        <!-- @Public -->
+        <!-- @ReadOnly  -->
+        <!-- Current displayed item. This item is set when Content Getter finished loading extra meta-data  -->
+        <field id="currentItem" type="node" alwaysNotify="true" />
+
+        <!-- @Public -->
+        <!-- tells what item is currently focused  -->
+        <field id="itemFocused" type="integer" alwaysNotify="true" />
+
+        <!-- @Public -->
+        <!-- itemLoaded is set to true when currentItem field is populated with new content node when content available or loaded  -->
+        <field id="itemLoaded" type="bool" alwaysNotify="true" />
+
+        <!-- @Public -->
+        <!-- @WriteOnly  -->
+        <!-- Manually focus on desired item. This field must be set after setting the content field. -->
+        <field id="jumpToItem" type="integer" onChange="OnJumpToItem" value="0" alwaysNotify="true" />
+
+        <!-- @Public -->
+        <!-- @ReadOnly  -->
+        <!-- Tells what button is focused  -->
+        <field id="buttonFocused" type="integer" alias="buttons.itemFocused" />
+
+        <!-- @Public -->
+        <!-- @ReadOnly  -->
+        <!-- Is set when button is selected by user. Should be observed in channel.
+        Can be used for showing next View or start playback or so. -->
+        <field id="buttonSelected" type="integer" alias="buttons.itemSelected" />
+
+        <!-- @Public -->
+        <!-- @WriteOnly  -->
+        <!-- Interface for setting focused button  -->
+        <field id="jumpToButton" type="integer" alias="buttons.jumpToItem" alwaysNotify="true" />
+
+        <!--
+            @Public
+            @Override
+            <field id="theme" type="assocarray" />
+
+            Controls the color of visual elements
+
+            @PossibleValue textColor - sets the color of all text elements in the view
+            @PossibleValue focusRingColor - set color of focus ring
+            @PossibleValue focusFootprintColor - set color for focus ring when unfocused
+            @PossibleValue rowLabelColor - sets color for row title
+
+            @PossibleValue descriptionColor -set the color of descriptionLabel
+            @PossibleValue actorsColor -set the color of actorsLabel
+            @PossibleValue ReleaseDateColor -set the the color for ReleaseDate
+            @PossibleValue RatingAndCategoriesColor -set the color of categories
+
+            @PossibleValue buttonsFocusedColor - set the color of focused buttons
+            @PossibleValue buttonsUnFocusedColor - set the color of unfucused buttons
+            @PossibleValue buttonsFocusRingColor - set the color of button focuse ring
+            @PossibleValue buttonsSectionDividerTextColor - set the color of section divider
+        -->
+    </interface>
+
+    <script type="text/brightscript" uri="HDetailsView.brs" />
+    <script type="text/brightscript" uri="../SGDEX/ContentManager/ContentManagerUtils.brs" />
+    <script type="text/brightscript" uri="../SGDEX/Views/utils/utils.brs" />
+
+<!-- info1=release date,duration; info3=Title -->
+
+    <children>
+        <Group
+            id="detailsGroup">
+                <Rectangle
+                    id="styledPosterArea"
+                    width="357"
+                    height="201"
+                    color="0xFFFFFF00"
+                    translation="[10, 15]">
+                    <StyledPoster
+                        id="poster"
+                        maxWidth="357"
+                        maxHeight="201"
+                    />
+                </Rectangle>
+                <!-- 
+                <Label
+                    id="info2"
+                    width="357"
+                    wrap="true"
+                    horizAlign="right"
+                />
+                -->
+                <LabelList
+                    id="buttons"
+                    numRows="1"
+                    itemSize="[215, 48]"
+                    translation="[80, 300]"
+		    		textHorizAlign = "center"
+                />
+                    <!-- itemSpacing="[0,10]" -->
+
+                <Label
+                    id="info3"
+                    width="757"
+                    wrap="true"
+                    horizAlign="right"
+				    font="font:LargeBoldSystemFont"
+                  	translation="[450, 15]"/>
+                 <Label
+                    id="info1"
+                    width="757"
+                    wrap="true"
+                    horizAlign="right"
+                  	translation="[450, 90]"/>
+                 <Label
+                    id="description"
+                    wrap="true"
+                    maxLines="10"
+                    width="757"
+                    horizAlign="left"
+                  	translation="[450, 200]"/>
+        </Group>
+
+        <Group
+            id="spinnerGroup"
+            translation="[640,430]"
+            >
+            <LayoutGroup
+                horizAlignment="center"
+                vertAlignment="center"
+                >
+                <BusySpinner
+                    id="spinner"
+                    visible="false"
+                    control="start"
+                />
+            </LayoutGroup>
+        </Group>
+
+    </children>
+</component>

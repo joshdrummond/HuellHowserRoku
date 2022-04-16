@@ -1,0 +1,9 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<component name="MainScene" extends="BaseScene" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:noNamespaceSchemaLocation="https://devtools.web.roku.com/schema/RokuSceneGraph.xsd">
+    <script type="text/brightscript" uri="MainScene.brs" />
+    <script type="text/brightscript" uri="MenuViewLogic.brs" />
+    <script type="text/brightscript" uri="DetailsViewLogic.brs" />
+    <script type="text/brightscript" uri="SearchViewLogic.brs" />
+    <script type="text/brightscript" uri="AboutViewLogic.brs" />
+    <script type="text/brightscript" uri="Utils.brs" />
+</component>

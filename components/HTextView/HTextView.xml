@@ -1,0 +1,33 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<component name="HTextView" extends="SGDEXComponent" xsi:noNamespaceSchemaLocation="https://devtools.web.roku.com/schema/RokuSceneGraph.xsd">
+    <interface>
+	    <function name="setText" />
+ 
+    </interface>
+
+    <script type="text/brightscript" uri="HTextView.brs" />
+
+    <children>
+        <Rectangle
+            id="tbox"
+            translation="[20,135]"
+            color="#FFFFEA"
+            width="1240"
+            height="565">
+            
+            <ScrollableText
+            	id="stxt"
+            	font="font:SmallBoldSystemFont"
+            	color="#000000"
+            	horizAlign="center"
+            	vertAlight="top"
+            	text=""
+            	width="1230"
+            	height="555"
+            	translation="[5,5]">
+            </ScrollableText>
+        </Rectangle>
+
+    </children>
+</component>
