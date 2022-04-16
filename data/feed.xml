@@ -1,0 +1,12 @@
+<feed>
+   <show>
+      <baseUrl>https://sample.url.com/</baseUrl>
+      <title>Sample Title</title>
+      <description>Sample Description.</description>
+      <date>2000/01/01</date>
+      <duration>1000</duration>
+      <uniqueId>SampleID</uniqueId>
+      <videoUrl>http://sample.url.com/video.mp4</videoUrl>
+      <streamFormat>mp4</streamFormat>
+   </show>
+</feed>
