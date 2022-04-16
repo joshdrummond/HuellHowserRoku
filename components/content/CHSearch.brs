@@ -1,8 +1,7 @@
-sub GetContent()
 
+sub GetContent()
     results = LoadShowFeed(false, true, m.top.query)
     
-    ' building rows with specific content items
     rootChildren = {
        children: []
     }

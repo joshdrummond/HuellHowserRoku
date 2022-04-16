@@ -1,12 +1,9 @@
 <?xml version="1.0" encoding="UTF-8"?>
-
 <component name="HMenuView" extends="SGDEXComponent" xsi:noNamespaceSchemaLocation="https://devtools.web.roku.com/schema/RokuSceneGraph.xsd">
-
     <interface>
         <!-- @Public -->
         <!-- @ReadOnly  -->
         <field id="itemSelected" type="integer" alias="menuButtonGroup.itemSelected" />
- 
     </interface>
     
     <script type="text/brightscript" uri="HMenuView.brs" />
@@ -26,6 +23,5 @@
 		      <ContentNode title = "About" />
 		    </ContentNode>
     	</LabelList>
-    		
     </children>
 </component>

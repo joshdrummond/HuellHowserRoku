@@ -1,50 +1,19 @@
 
-function ShowDetailsViewShuffle() as Object
-    print "show detail view shuffle"
-    content = CreateObject("roSGNode", "ContentNode")
-    content.AddFields({
-        HandlerConfigDetails: {
-            name: "CHShuffle"
-        },
-        isContentLoaded: false
-    })
-    
+function ShowDetailsView(content as Object, index as Integer, isContentList = true as Boolean) as Object
     details = CreateObject("roSGNode", "HDetailsView")
     details.ObserveField("buttonSelected", "DetailsView_ButtonSelected")
-
-    DetailsView_SetButtons(details, ["Play"])
-    details.SetFields({
-        content: content
-        'jumpToItem: 0
-        isContentList: true
-    })
-
-    m.top.ComponentController.CallFunc("show", {
-        view: details
-    })
-    
-    return details
-end function
-
-
-function ShowDetailsViewSearch(content as Object, index as Integer, isContentList = true as Boolean) as Object
-    print "show detail view search"
-    details = CreateObject("roSGNode", "HDetailsView")
-    details.ObserveField("buttonSelected", "DetailsView_ButtonSelected")
-
     DetailsView_SetButtons(details, ["Play"])
     details.SetFields({
         content: content
         jumpToItem: index
         isContentList: isContentList
     })
-
     m.top.ComponentController.CallFunc("show", {
         view: details
     })
-    
     return details
 end function
+
 
 sub DetailsView_SetButtons(view as object, buttons as object)
     btnsContent = CreateObject("roSGNode", "ContentNode")
@@ -56,14 +25,15 @@ sub DetailsView_SetButtons(view as object, buttons as object)
     view.buttons = btnsContent
 end sub
 
+
 sub DetailsView_ButtonSelected(event as Object)
     details = event.GetRoSGNode()
     selectedButton = details.buttons.GetChild(event.GetData())
-
     if selectedButton.id = "Play"
         ShowVideoPlayer(details.content, details.itemFocused, details.isContentList)
     end if
 end sub
+
 
 function ShowVideoPlayer(content as Object, index as Integer, isContentList = true as Boolean) as Object
     video = CreateObject("roSGNode", "MediaView")
@@ -71,7 +41,6 @@ function ShowVideoPlayer(content as Object, index as Integer, isContentList = tr
     video.jumpToItem = index
     video.isContentList = false
     video.control = "play"
-
     m.top.ComponentController.CallFunc("show", {
         view: video
     })

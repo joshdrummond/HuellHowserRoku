@@ -1,5 +1,4 @@
 <?xml version="1.0" encoding="UTF-8"?>
-
 <component name="HDetailsView" extends="SGDEXComponent" xsi:noNamespaceSchemaLocation="https://devtools.web.roku.com/schema/RokuSceneGraph.xsd">
     <interface>
         <!-- @Public -->
@@ -137,6 +136,7 @@
                   	translation="[450, 200]"/>
         </Group>
 
+<!-- 
         <Group
             id="spinnerGroup"
             translation="[640,430]"
@@ -152,6 +152,6 @@
                 />
             </LayoutGroup>
         </Group>
-
+ -->
     </children>
 </component>

@@ -1,12 +1,11 @@
-' Copyright (c) 2018 Roku, Inc. All rights reserved.
 
 sub Init()
 
     m.Handler_ConfigField = "HandlerConfigDetails"
 
     ' setup nodes
-    m.spinner =          m.top.FindNode("spinner")
-    m.spinner.uri =      "pkg:/components/SGDEX/Images/loader.png"
+    'm.spinner =          m.top.FindNode("spinner")
+    'm.spinner.uri =      "pkg:/components/SGDEX/Images/loader.png"
 
     m.overhang =         m.top.FindNode("overhang")
     m.poster =           m.top.FindNode("poster")
@@ -34,51 +33,17 @@ sub Init()
     m.top.ObserveField("currentItem", "OnCurrentItemChanged")
     m.contentObserverIsSet = false
 
-
     ' Reference to current ContentNode which populated to DetailsView
     ' To differentiate ContentNode change and ContentNode field change
     m.currentContentNode = invalid
 
-'    m.info1 = CreateObject("roSGNode", "Label")
-'       m.info1.Update({
-'            id :"info1"
-'            wrap : "false"
-'            horizAlign : "right"
-'        })
-'    m.info1Layout = CreateObject("roSGNode", "LayoutGroup")
-'        m.info1Layout.Update({
-'            id :"info1Layout"
-'            layoutDirection : "horiz"
-'            horizAlignment  :"right"
-'            itemSpacings : "[100,0]"
-'            children : [m.info1]
-'    })
-
-'    m.viewLayout.insertChild(m.info1Layout,4)
-
     if m.LastThemeAttributes <> invalid then
         SGDEX_SetTheme(m.LastThemeAttributes)
     end if
-    ' used to restore default view UI if user reset style
-  '  m.defaultUIConfig = {
-  '      poster: {
-  '          maxWidth: 357
-  '          maxHeight: 201
-  '          shape: "16x9"
-  '          translation: [0, 0]
-  '      }
-  '      info1: {
-  '          wrap: false
-  '          horizAlign: "right"
-  '      }
-        'info2: {
-        '    width: 357
-        '    wrap: false
-        '    horizAlign: "right"
-        '}
-  '  }
+
     OnStyleChange()
 end sub
+
 
 sub OnFocusedChildChanged()
     if m.buttons <> invalid and m.top.IsInFocusChain() and not m.buttons.HasFocus() then
@@ -86,9 +51,10 @@ sub OnFocusedChildChanged()
     end if
 end sub
 
+
 sub OnStyleChange()
     style = m.top.style
-print style
+'print style
     config = GetUIConfigForStyle(style)
     for each componentName in config
         if m[componentName] <> invalid
@@ -96,6 +62,7 @@ print style
         end if
     end for
 end sub
+
 
 function GetUIConfigForStyle(style as String) as Object
     uiConfig = m.defaultUIConfig
@@ -119,12 +86,14 @@ function GetUIConfigForStyle(style as String) as Object
     return uiConfig
 end function
 
+
 sub OnPosterShapeChange()
     m.poster.shape = m.top.posterShape
     posterX = (m.styledPosterArea.width - m.poster.width) / 2
     posterY = (m.styledPosterArea.height - m.poster.height) / 2
     m.poster.translation = [posterX, posterY]
 end sub
+
 
 sub OnWasShown()
     if m.top.wasShown
@@ -140,9 +109,10 @@ sub OnWasShown()
     end if
 end sub
 
+
 sub OnContentSet()
-print "OnContentSet"
-print m.top.content
+'print "OnContentSet"
+'print m.top.content
     if m.top.content <> invalid
         ' Handles if callback triggered by changing field of ContentNode or
         ' replace with new ContentNode by saving reference to m.currentContentNode
@@ -158,6 +128,7 @@ print m.top.content
         m.buttons.content = invalid
     end if
 end sub
+
 
 sub OnItemFocusedChanged(event as Object)
     focusedItem = event.GetData()
@@ -179,6 +150,7 @@ sub OnItemFocusedChanged(event as Object)
     end if
 end sub
 
+
 sub OnCurrentItemChanged(event as Object)
     currentItem = event.getData()
     if currentItem <> invalid
@@ -188,6 +160,7 @@ sub OnCurrentItemChanged(event as Object)
     end if
 end sub
 
+
 sub OnJumpToItem()
     content = m.top.content
     if content <> invalid and m.top.jumpToItem >= 0 and content.Getchildcount() > m.top.jumpToItem
@@ -195,8 +168,9 @@ sub OnJumpToItem()
     end if
 end sub
 
+
 sub SetDetailsContent(content as Object)
-print "setDetailsContent"
+'print "setDetailsContent"
     if content <> invalid
         m.poster.uri = content.hdposterurl
         contentDurationString = Utils_DurationAsString(content.length)
@@ -243,6 +217,7 @@ print "setDetailsContent"
     end if
 end sub
 
+
 function onKeyEvent(key as String, press as Boolean) as Boolean
     handled = false
     steps = {
@@ -272,11 +247,13 @@ function onKeyEvent(key as String, press as Boolean) as Boolean
     return handled
 end function
 
+
 sub SetOverhangTitle(title as String)
     if m.overhang <> invalid
         m.overhang.title = title
     end if
 end sub
+
 
 ' #################################################################################
 
@@ -303,6 +280,7 @@ function ConvertToStringAndJoin(dataArray as Object, divider = " | " as String) 
     return result
 end function
 
+
 function GetNextItemIndex(currentIndex as Integer, maxIndex as Integer, _step as Integer, allowCarousel = false as Boolean, minIndex = 0 as Integer) as Integer
     result = currentIndex + _step
 
@@ -323,10 +301,12 @@ function GetNextItemIndex(currentIndex as Integer, maxIndex as Integer, _step as
     return result
 end function
 
+
 function isImageURI(text as String) as Boolean
     regex = CreateObject("roRegex", "(?:jpg|gif|png)", text)
     return regex.isMatch(text)
 end function
+
 
 sub SGDEX_SetTheme(theme as Object)
     colorTheme = {
@@ -366,11 +346,12 @@ sub SGDEX_SetTheme(theme as Object)
         buttonsFocusRingColor:          { buttons: "focusBitmapBlendColor" }
         buttonsSectionDividerTextColor: { buttons: "sectionDividerTextColor" }
 
-        busySpinnerColor: { spinner : { poster: "blendColor"} }
+        'busySpinnerColor: { spinner : { poster: "blendColor"} }
     }
 
     SGDEX_setThemeFieldstoNode(m, detailsThemeAttributes, theme)
 end sub
+
 
 function SGDEX_GetViewType() as String
     return "detailsView"
@@ -379,6 +360,7 @@ end function
 
 sub SGDEX_UpdateViewUI()
 end sub
+
 
 sub foobar()
     'avoid triggering if view wasn't initialized

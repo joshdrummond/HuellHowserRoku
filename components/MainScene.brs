@@ -20,24 +20,7 @@ sub Show(args as Object)
             itemTextBackgroundColor: "#FFFFEA"
         }
     }
-    
+    ' Show Main Menu
     ShowMenuView()
     m.top.signalBeacon("AppLaunchComplete")
 end sub
-
-
-sub OnContentLoaded(event as object)
-    content = event.GetRoSGNode()
-    if content.isContentLoaded then
-        ' content has been loaded, process launch time deep linking
- '       if IsDeepLinking(m.args) ' if there are non-empty contentId and mediaType
- '           PerformDeeplinking(m.args)
- '       end if
-        ' clear previously cached arguments
-        m.args = invalid
-
-        content.UnobserveFieldScoped("isContentLoaded")
-    end if
-end sub
-
-
