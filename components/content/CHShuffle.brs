@@ -1,6 +1,6 @@
 sub GetContent()
 print "ch shuffle"
-    results = LoadShowFeed(true, false, "")
+    results = LoadShowFeed(true, false, false, "")
     
     ' building rows with specific content items
     rootChildren = {

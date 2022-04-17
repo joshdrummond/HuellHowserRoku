@@ -38,7 +38,16 @@ Function strTrim(str As String) As String
     return st.Trim()
 End Function
 
-function LoadShowFeed(isRandom As Boolean, isFilter As Boolean, filter As String) As Object
+function arrContains(arr as Object, value as String) as Boolean
+    for each entry in arr
+        if entry = value
+            return true
+        end if
+    end for
+    return false
+end function
+
+function LoadShowFeed(isRandom As Boolean, isFilter As Boolean, isContentId As Boolean, filter As String) As Object
     txt = ReadASCIIFile("pkg:/data/feed.xml")
     'print "found in xml = " + itostr(Len(txt))
     xml = CreateObject("roXMLElement")
@@ -54,12 +63,12 @@ function LoadShowFeed(isRandom As Boolean, isFilter As Boolean, filter As String
         print "no feed body found"
         return 0
     endif
-    feed = ParseShowFeed(xml, isRandom, isFilter, filter)
+    feed = ParseShowFeed(xml, isRandom, isFilter, isContentId, filter)
     'print "found shows = " + itostr(feed.getChildCount())
     return feed
 end function
 
-function ParseShowFeed(xml As Object, isRandom As Boolean, isFilter As Boolean, filter As String) As Object
+function ParseShowFeed(xml As Object, isRandom As Boolean, isFilter As Boolean, isContentId As Boolean, filter As String) As Object
     showCount = 0
     showList = xml.GetChildElements()
     contentFeed = CreateObject("roSGNode", "ContentNode")
@@ -85,7 +94,11 @@ function ParseShowFeed(xml As Object, isRandom As Boolean, isFilter As Boolean, 
         item.Url = validstr(curShow.videoUrl.GetText())
         if validstr(curShow.videoUrl.GetText()) <> "" then
             showCount = showCount + 1
-            if isFilter and isnonemptystr(filter) then
+            if isContentId and isnonemptystr(filter) then
+                if arrContains(item.StreamContentIds, filter) then
+                    contentFeed.appendChild(item)
+                end if
+            else if isFilter and isnonemptystr(filter) then
                 ' check if new show matches filter criteria and add to feed if so
                 if (LCase(item.Title).Instr(LCase(filter)) > -1) or (LCase(item.Description).Instr(LCase(filter)) > -1) then
                     contentFeed.appendChild(item)
@@ -112,7 +125,6 @@ function InitShowFeedItem() As Object
     o.ContentType      = ""
     o.StreamQualities  = ["SD"]
     o.HDPosterUrl      = "pkg:/images/huell-icon-poster-hd.png"
-    'o.SDPosterUrl      = "pkg:/images/huell-icon-poster-sd.png"
     o.HDBranded        = false
     o.StarRating       = "100"
     o.ContentType      = "episode" 

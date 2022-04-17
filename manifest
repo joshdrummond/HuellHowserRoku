@@ -1,11 +1,9 @@
 title=Huell Howser's California
-#subtitle=Huell Howser archive videos from Chapman University
 major_version=3
 minor_version=0
-build_version=00001
+build_version=00004
 mm_icon_focus_hd=pkg:/images/huell-icon-poster-hd.png
-#mm_icon_focus_sd=pkg:/images/MainMenu_Icon_CenterFocus_SD.png
-#splash_screen_hd=pkg:/images/MainMenu_Icon_CenterFocus_HD.png
-#splash_screen_sd=pkg:/images/MainMenu_Icon_CenterFocus_SD.png
+splash_screen_hd=pkg:/images/huell-splash-original.jpg
 ui_resolutions=hd
 bs_libs_required=roku_ads_lib
+supports_input_launch=1

@@ -1,6 +1,6 @@
 
 sub GetContent()
-    results = LoadShowFeed(false, true, m.top.query)
+    results = LoadShowFeed(false, true, false, m.top.query)
     
     rootChildren = {
        children: []

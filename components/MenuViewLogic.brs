@@ -10,7 +10,7 @@ end sub
 sub OnButtonItemSelected(event as Object)
     selectedIndex = event.GetData()
     if selectedIndex = 0 then
-        ShowDetailsView(LoadShowFeed(true, false, ""), 0, true)
+        ShowDetailsView(LoadShowFeed(true, false, false, ""), 0, true)
     else if selectedIndex = 1 then
         ShowSearchView()
     else if selectedIndex = 2 then
