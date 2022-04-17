@@ -111,8 +111,8 @@ function InitShowFeedItem() As Object
     o.Title            = ""
     o.ContentType      = ""
     o.StreamQualities  = ["SD"]
-    o.HDPosterUrl      = "pkg:/images/huell-kcet-poster-hd.png"
-    o.SDPosterUrl      = "pkg:/images/huell-kcet-poster-sd.png"
+    o.HDPosterUrl      = "pkg:/images/huell-icon-poster-hd.png"
+    'o.SDPosterUrl      = "pkg:/images/huell-icon-poster-sd.png"
     o.HDBranded        = false
     o.StarRating       = "100"
     o.ContentType      = "episode" 
