@@ -14,6 +14,8 @@ sub OnButtonItemSelected(event as Object)
     else if selectedIndex = 1 then
         ShowSearchView()
     else if selectedIndex = 2 then
+        ShowVideoPlayer(LoadShowFeed(true, false, false, ""), true)
+    else if selectedIndex = 3 then
         ShowAboutView()
     end if
 end sub

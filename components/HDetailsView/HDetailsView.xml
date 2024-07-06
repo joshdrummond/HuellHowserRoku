@@ -108,8 +108,8 @@
                 <LabelList
                     id="buttons"
                     numRows="1"
-                    itemSize="[215, 48]"
-                    translation="[80, 300]"
+                    itemSize="[110, 48]"
+                    translation="[135, 300]"
 		    		textHorizAlign = "center"
                 />
                     <!-- itemSpacing="[0,10]" -->
@@ -134,6 +134,18 @@
                     width="757"
                     horizAlign="left"
                   	translation="[450, 200]"/>
+                 <Label
+                    id="backLabel"
+                    width="20"
+                    horizAlign="left"
+				    font="font:LargeBoldSystemFont" 
+                  	translation="[60, 310]"/>
+                 <Label
+                    id="forwardLabel"
+                    width="20"
+                    horizAlign="right"
+				    font="font:LargeBoldSystemFont" 
+                  	translation="[300, 310]"/>
         </Group>
 
 <!-- 

@@ -15,6 +15,10 @@ sub Init()
     m.info3 =            m.top.FindNode("info3")
     'm.viewLayout =       m.top.FindNode("viewLayout")
     m.descriptionLabel = m.top.FindNode("description")
+    m.backLabel = m.top.FindNode("backLabel")
+    m.backLabel.text = "<"
+    m.forwardLabel = m.top.FindNode("forwardLabel")
+    m.forwardLabel.text = ">"
     'm.actorsLabel =      m.top.FindNode("actors")
     m.buttons =          m.top.FindNode("buttons")
     m.styledPosterArea = m.top.FindNode("styledPosterArea")
@@ -56,11 +60,13 @@ sub OnStyleChange()
     style = m.top.style
 'print style
     config = GetUIConfigForStyle(style)
-    for each componentName in config
-        if m[componentName] <> invalid
-            m[componentName].Update(config[componentName])
-        end if
-    end for
+    if not isnullorempty(config)
+        for each componentName in config
+            if m[componentName] <> invalid
+                m[componentName].Update(config[componentName])
+            end if
+        end for
+    end if
 end sub
 
 
@@ -73,6 +79,12 @@ function GetUIConfigForStyle(style as String) as Object
                 wrap: true
                 width: 357
                 maxLines: 2
+                font: "font:LargeSystemFont"
+            }
+            forwardLabel: {
+                font: "font:LargeSystemFont"
+            }
+            backLabel: {
                 font: "font:LargeSystemFont"
             }
             'info2: {
@@ -322,6 +334,8 @@ sub SGDEX_SetTheme(theme as Object)
             info3:            "color"
             'actorsLabel:      "color"
             descriptionLabel: "color"
+            forwardLabel: "color"
+            backLabel: "color"
         }
         focusRingColor: {
             buttons: ["focusBitmapBlendColor"]

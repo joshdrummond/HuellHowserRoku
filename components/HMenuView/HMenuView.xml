@@ -20,6 +20,7 @@
     	    <ContentNode role = "content" >
 		      <ContentNode title = "Shuffle Episodes" />
 		      <ContentNode title = "Search Episodes" />
+		      <ContentNode title = "Marathon Episodes" />
 		      <ContentNode title = "About" />
 		    </ContentNode>
     	</LabelList>

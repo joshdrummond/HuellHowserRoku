@@ -60,7 +60,7 @@ sub PerformDeeplinking(args as Object)
             print "Content is already playing"
         else if currentView.Subtype() = "DetailsView" and currentView.currentItem.id = contentId
             ' if if currentView is DetailsView and current playing item id equal to contentId, then play it
-            ShowVideoPlayer(currentView.content, currentView.itemFocused)
+            ShowVideoPlayer(currentView.content.getChild(currentView.itemFocused), false)
         else
             ' show media view with item id equal to contentId
             CloseAllAppViewsButHome()
@@ -86,7 +86,7 @@ sub ImitateMediaViewOpening(contentId as String)
     results = LoadShowFeed(false, false, true, contentId)
     if (results.getChildCount() > 0) then
         ShowDetailsView(results, 0, true)
-        ShowVideoPlayer(results, 0, true)
+        ShowVideoPlayer(results.getChild(0), true)
         return
     end if
     ShowContentNotFoundDialog()

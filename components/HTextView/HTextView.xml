@@ -19,7 +19,7 @@
             	font="font:SmallBoldSystemFont"
             	color="#000000"
             	horizAlign="center"
-            	vertAlight="top"
+            	vertAlign="top"
             	text=""
             	width="1230"
             	height="555"

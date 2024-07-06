@@ -30,16 +30,18 @@ sub DetailsView_ButtonSelected(event as Object)
     details = event.GetRoSGNode()
     selectedButton = details.buttons.GetChild(event.GetData())
     if selectedButton.id = "Play"
-        ShowVideoPlayer(details.content, details.itemFocused, details.isContentList)
+        ShowVideoPlayer(details.content.getChild(details.itemFocused), false)
     end if
 end sub
 
 
-function ShowVideoPlayer(content as Object, index as Integer, isContentList = true as Boolean) as Object
+function ShowVideoPlayer(content as Object, isContentList = true as Boolean) as Object
     video = CreateObject("roSGNode", "MediaView")
-    video.content = content.getChild(index)
-    video.jumpToItem = index
-    video.isContentList = false
+    'video.content = content.getChild(index)
+    video.content = content
+    'video.jumpToItem = index
+    'video.isContentList = false
+    video.isContentList = isContentList
     video.control = "play"
     m.top.ComponentController.CallFunc("show", {
         view: video
